@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+
+use 5.006;
+
+use strict;
+use warnings;
+no  warnings 'syntax';
+
+use LWP::Simple;
+
+my $login       = $ENV {BITLY_LOGIN}   or die "BITLY_LOGIN not set\n";
+my $api_key     = $ENV {BITLY_API_KEY} or die "BITLY_API_KEY not set\n";
+
+my $host        = "api.bit.ly";
+my $api_version = "v3";
+my $service     = "shorten";
+my $format      = "txt";
+my $url_h       = "http://$host/$api_version/$service?format=$format" .
+                  "&login=$login&apiKey=$api_key&longUrl=";
+
+sub shorten {
+    my $long_url = $_;
+       $long_url =~ s{([^-a-zA-Z0-9./:_])}{sprintf "%%02X" => ord $1}eg;
+    my $url = "$url_h$long_url";
+    print get ($url) || die "Failed to shorten $long_url\n";
+}
+
+if (@ARGV) {
+    shorten for @ARGV;
+}
+else {
+    while (<>) {
+        chomp;
+        shorten;
+    }
+}
+
+
+__END__

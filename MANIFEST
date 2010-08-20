@@ -1,3 +1,4 @@
+bin/bitly
 lib/App/Bitly.pm
 Makefile.PL
 MANIFEST
