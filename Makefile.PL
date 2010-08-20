@@ -37,11 +37,12 @@ my %args = (
             'strict'             => 0,
             'warnings'           => 0,
             'Test::More'         => 0.88,
+            'LWP::Simple'        => 0,
         },
         resources        => {
             repository   => $REPOSITORY,
         },
-        keywords         => [qw [ ]],
+        keywords         => [qw [Bitly shorten-urls]],
     },
 );
 
