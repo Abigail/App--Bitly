@@ -8,15 +8,17 @@ no  warnings 'syntax';
 
 use LWP::Simple;
 
-my $login       = $ENV {BITLY_LOGIN}   or die "BITLY_LOGIN not set\n";
-my $api_key     = $ENV {BITLY_API_KEY} or die "BITLY_API_KEY not set\n";
+our $VERSION     = '2010082001';
 
-my $host        = "api.bit.ly";
-my $api_version = "v3";
-my $service     = "shorten";
-my $format      = "txt";
-my $url_h       = "http://$host/$api_version/$service?format=$format" .
-                  "&login=$login&apiKey=$api_key&longUrl=";
+my  $login       = $ENV {BITLY_LOGIN}   or die "BITLY_LOGIN not set\n";
+my  $api_key     = $ENV {BITLY_API_KEY} or die "BITLY_API_KEY not set\n";
+
+my  $host        = "api.bit.ly";
+my  $api_version = "v3";
+my  $service     = "shorten";
+my  $format      = "txt";
+my  $url_h       = "http://$host/$api_version/$service?format=$format" .
+                   "&login=$login&apiKey=$api_key&longUrl=";
 
 sub shorten {
     my $long_url = $_;
@@ -37,3 +39,101 @@ else {
 
 
 __END__
+
+=head1 NAME
+
+App::Bitly - Shorten URL using the bitly service.
+
+=head1 SYNOPSIS
+ 
+ bitly URL
+
+=head1 DESCRIPTION
+
+A lightweigth application to shorten URLs using the bit.ly service.
+
+The URLs can be given as arguments to the application. If the application
+isn't given any arguments, it will read URLs from STDIN.
+
+For each URL, it will print the corresponding shortened URL on STDOUT.
+
+=head2 Configuration
+
+The C<< bitly >> application uses the API of L<< api.bit.ly >>. In order
+to use the API, the login name and an api key are required. The C<< bitly >>
+application takes these values from the environment variables
+C<< BITLY_LOGIN >> and C<< BITLY_API_KEY >>. You may want to set those
+variables in your shell configuration file.
+
+=head1 LIMITATIONS
+
+By design, the C<< bitly >> application only shortens URLs, and only returns
+the information in C<< txt >> (text) format. If you want to make use of other
+parts of the API, want to retrieve information in C<< json >> or C<< xml >>
+format, or don't want the shorted URL to be printed to STDOUT, please use
+one of the CPAN modules that give you access to more parts of the API.
+
+=head1 BUGS
+
+There are no known bugs.
+
+=head1 SEE ALSO
+
+=over 1
+
+=item *
+
+L<< WWW::Shorten::Bitly >>
+
+=item *
+
+L<< WebService::Bitly >>
+
+=item *
+
+L<< The bit.ly API|http://code.google.com/p/bitly-api/wiki/ApiDocumentation >>
+
+=back
+
+=head1 DEVELOPMENT
+
+The current sources of this application are found on github,
+L<< git://github.com/Abigail/App--Bitly.git >>.
+
+=head1 AUTHOR
+
+Abigail, L<< mailto:cpan@abigail.be >>.
+
+=head1 COPYRIGHT and LICENSE
+
+Copyright (C) 2010 by Abigail.
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),   
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+=head1 INSTALLATION
+
+To install this application, run, after unpacking the tar-ball, the 
+following commands:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+=cut
