@@ -1,8 +1,6 @@
 bin/bitly
-lib/App/Bitly.pm
 Makefile.PL
 MANIFEST
-t/000_basic.t
 t/010_run.t
 t/950_pod.t
 t/960_pod_coverage.t
