@@ -7,28 +7,29 @@ no  warnings 'syntax';
 
 our $VERSION = '2010082001';
 
-
 1;
 
 __END__
 
 =head1 NAME
 
-App::Bitly - Abstract
+App::Bitly - Shorten URL using the bitly service.
 
 =head1 SYNOPSIS
+ 
+ bitly URL
 
 =head1 DESCRIPTION
 
+Please refer to the L<< bitly >> manual page for details.
+
 =head1 BUGS
 
-=head1 TODO
-
-=head1 SEE ALSO
+No known bugs.
 
 =head1 DEVELOPMENT
 
-The current sources of this module are found on github,
+The current sources of this application are found on github,
 L<< git://github.com/Abigail/App--Bitly.git >>.
 
 =head1 AUTHOR
