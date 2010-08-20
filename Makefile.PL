@@ -10,8 +10,7 @@ use ExtUtils::MakeMaker;
 
 my  $PACKAGE      =  'App::Bitly';
 
-my  $LIB_FILE     =  "lib/$PACKAGE.pm";
-    $LIB_FILE     =~  s!::!/!g;
+my  $LIB_FILE     =  "bin/bitly";
 my  $LOCAL_ADDR   =  'cpan';
 my  $DOMAIN       =  'abigail.be';
 my  $REPO         =   $PACKAGE;
@@ -44,6 +43,7 @@ my %args = (
         },
         keywords         => [qw [Bitly shorten-urls]],
     },
+    EXE_FILES            => [qw [bin/bitly]],
 );
 
 $args {META_MERGE} {build_requires} ||= {
